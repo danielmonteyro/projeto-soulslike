@@ -1,0 +1,66 @@
+body {
+  background-color: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.carousel-container {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.3s ease;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.card {
+  background-color: #222;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 10px;
+  min-width: 250px;
+  flex-shrink: 0;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+button {
+  cursor: pointer;
+  padding: 8px 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+}
+
+.card button {
+  background-color: #333;
+  color: white;
+  margin: 5px;
+}
+
+.arrow {
+  background: #444;
+  color: white;
+  font-size: 24px;
+  border: none;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.arrow:hover {
+  background: #666;
+}
