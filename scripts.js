@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
           { level: "NG+", hp: 6000, souls: 85000 },
           { level: "NG++", hp: 7200, souls: 100000 },
         ],
-        drops: ["item1", null, "item3"],
+        drops: ["Soul of Gwyn Lord of Cinder", null, "Cinders of a Lord"],
         img: "./img/gwyn-lord-of-cinder.jpg"
       },
       {
@@ -23,7 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ngPlus: [
           { level: "NG+", hp: 5400, souls: 65000 },
           { level: "NG++", hp: 6300, souls: 80000 },
-        ]
+        ],
+        drops: ["item1", null, "item3"],
+        img: "./img/knight-artorias.jpg"
       },
       {
         id: "aldrich",
