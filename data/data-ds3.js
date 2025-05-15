@@ -1,4 +1,4 @@
-const gameData = {
+const gameDataDS3 = {
   bossesPrincipais: [
     {
       id: "nashandra",

@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log(gameData);
   const container = document.body;
 
-  for (const categoria in gameData) {
+  for (const categoria in gameDataDS1) {
     const section = document.createElement("section");
     const title = document.createElement("h2");
     title.textContent = formatarTitulo(categoria);
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const wrapper = document.createElement("div");
     wrapper.className = "carousel-wrapper";
 
-    gameData[categoria].forEach((char) => {
+    gameDataDS1[categoria].forEach((char) => {
       let ngIndex = 0;
 
       const card = document.createElement("div");
