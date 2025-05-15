@@ -11,6 +11,48 @@ document.addEventListener("DOMContentLoaded", () => {
         ngPlus: [
           { level: "NG+", hp: 6000, souls: 85000 },
           { level: "NG++", hp: 7200, souls: 100000 },
+        ],
+        drops: ["item1", null, "item3"],
+        img: "./img/gwyn-lord-of-cinder.jpg"
+      },
+      {
+        id: "artorias",
+        name: "Artorias the Abysswalker",
+        baseHp: 4500,
+        baseSouls: 50000,
+        ngPlus: [
+          { level: "NG+", hp: 5400, souls: 65000 },
+          { level: "NG++", hp: 6300, souls: 80000 },
+        ]
+      },
+      {
+        id: "aldrich",
+        name: "Aldrich, Devourer of Gods",
+        baseHp: 5000,
+        baseSouls: 70000,
+        ngPlus: [
+          { level: "NG+", hp: 6000, souls: 85000 },
+          { level: "NG++", hp: 7200, souls: 100000 },
+        ]
+      },
+      {
+        id: "artorias",
+        name: "Artorias the Abysswalker",
+        baseHp: 4500,
+        baseSouls: 50000,
+        ngPlus: [
+          { level: "NG+", hp: 5400, souls: 65000 },
+          { level: "NG++", hp: 6300, souls: 80000 },
+        ]
+      },
+      {
+        id: "gwyn",
+        name: "Gwyn, Lord of Cinder",
+        baseHp: 5000,
+        baseSouls: 70000,
+        ngPlus: [
+          { level: "NG+", hp: 6000, souls: 85000 },
+          { level: "NG++", hp: 7200, souls: 100000 },
         ]
       },
       {
@@ -110,11 +152,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const prevBtn = document.createElement("button");
     prevBtn.className = "arrow left";
-    prevBtn.textContent = "←";
+    prevBtn.innerHTML = `<i class="fa-solid fa-chevron-left"></i>`;
 
     const nextBtn = document.createElement("button");
     nextBtn.className = "arrow right";
-    nextBtn.textContent = "→";
+    nextBtn.innerHTML = `<i class="fa-solid fa-chevron-right"></i>`;
 
     const wrapper = document.createElement("div");
     wrapper.className = "carousel-wrapper";
@@ -133,10 +175,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
       card.innerHTML = `
         <h3>${char.name}</h3>
-        <p>HP: <span class="hp">${hpSpan.textContent}</span></p>
-        <p>Almas: <span class="souls">${soulSpan.textContent}</span></p>
-        <button class="ng-btn">${char.ngPlus.length > 0 ? char.ngPlus[0].level : "NG+"}</button>
-        <button onclick="window.open('lore.html?id=${char.id}', '_blank')">Lore</button>
+        <div class="image-co">
+          <img src=${char.img} alt=${char.name}>
+        </div>
+        <div class="numbers-co">
+          <p class="hp">${hpSpan.textContent}</p>
+          <p class="souls">${soulSpan.textContent}</p>
+        </div>
+        <div class="drops-co">
+          ${char.drops?.[0] ? `<p>${char.drops[0]}</p>` : ""}
+          ${char.drops?.[1] ? `<p>${char.drops[1]}</p>` : ""}
+          ${char.drops?.[2] ? `<p>${char.drops[2]}</p>` : ""}
+        </div>
+        <div class="buttons-co">
+          <button class="ng-btn">${char.ngPlus.length > 0 ? char.ngPlus[0].level : "NG+"}</button>
+          <button onclick="window.open('lore.html?id=${char.id}', '_blank')">Lore</button>
+        </div>
       `;
 
       const ngBtn = card.querySelector(".ng-btn");
