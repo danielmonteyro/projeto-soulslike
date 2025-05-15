@@ -22,6 +22,46 @@ document.addEventListener("DOMContentLoaded", () => {
           { level: "NG+", hp: 5400, souls: 65000 },
           { level: "NG++", hp: 6300, souls: 80000 },
         ]
+      },
+      {
+        id: "gwyn",
+        name: "Gwyn, Lord of Cinder",
+        baseHp: 5000,
+        baseSouls: 70000,
+        ngPlus: [
+          { level: "NG+", hp: 6000, souls: 85000 },
+          { level: "NG++", hp: 7200, souls: 100000 },
+        ]
+      },
+      {
+        id: "artorias",
+        name: "Artorias the Abysswalker",
+        baseHp: 4500,
+        baseSouls: 50000,
+        ngPlus: [
+          { level: "NG+", hp: 5400, souls: 65000 },
+          { level: "NG++", hp: 6300, souls: 80000 },
+        ]
+      },
+      {
+        id: "gwyn",
+        name: "Gwyn, Lord of Cinder",
+        baseHp: 5000,
+        baseSouls: 70000,
+        ngPlus: [
+          { level: "NG+", hp: 6000, souls: 85000 },
+          { level: "NG++", hp: 7200, souls: 100000 },
+        ]
+      },
+      {
+        id: "artorias",
+        name: "Artorias the Abysswalker",
+        baseHp: 4500,
+        baseSouls: 50000,
+        ngPlus: [
+          { level: "NG+", hp: 5400, souls: 65000 },
+          { level: "NG++", hp: 6300, souls: 80000 },
+        ]
       }
     ],
     bossesOpcionais: [
@@ -59,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
   };
 
-
   for (const categoria in gameData) {
     const section = document.createElement("section");
     const title = document.createElement("h2");
@@ -70,11 +109,11 @@ document.addEventListener("DOMContentLoaded", () => {
     carouselContainer.className = "carousel-container";
 
     const prevBtn = document.createElement("button");
-    prevBtn.className = "arrow";
+    prevBtn.className = "arrow left";
     prevBtn.textContent = "←";
 
     const nextBtn = document.createElement("button");
-    nextBtn.className = "arrow";
+    nextBtn.className = "arrow right";
     nextBtn.textContent = "→";
 
     const wrapper = document.createElement("div");
@@ -106,10 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       ngBtn.addEventListener("click", () => {
         if (char.ngPlus.length === 0) return;
-
         ngIndex = (ngIndex + 1) % char.ngPlus.length;
         const stats = char.ngPlus[ngIndex];
-
         hpDisplay.textContent = stats.hp;
         soulsDisplay.textContent = stats.souls;
         ngBtn.textContent = stats.level;
@@ -118,7 +155,26 @@ document.addEventListener("DOMContentLoaded", () => {
       wrapper.appendChild(card);
     });
 
-    // Carrossel funcional
+    const updateArrows = () => {
+      const scrollLeft = wrapper.scrollLeft;
+      const maxScrollLeft = wrapper.scrollWidth - wrapper.clientWidth;
+      prevBtn.style.visibility = scrollLeft <= 0 ? "hidden" : "visible";
+      nextBtn.style.visibility = scrollLeft >= maxScrollLeft - 1 ? "hidden" : "visible";
+    };
+
+    carouselContainer.addEventListener("mouseenter", () => {
+      updateArrows();
+      prevBtn.classList.add("show");
+      nextBtn.classList.add("show");
+    });
+
+    carouselContainer.addEventListener("mouseleave", () => {
+      prevBtn.classList.remove("show");
+      nextBtn.classList.remove("show");
+    });
+
+    wrapper.addEventListener("scroll", updateArrows);
+
     prevBtn.addEventListener("click", () => {
       wrapper.scrollBy({ left: -300, behavior: "smooth" });
     });
