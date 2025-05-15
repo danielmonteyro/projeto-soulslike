@@ -64,3 +64,11 @@ button {
 .arrow:hover {
   background: #666;
 }
+
+section {
+  margin-bottom: 60px;
+}
+
+h2 {
+  margin-left: 5%;
+}
