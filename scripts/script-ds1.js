@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const hpSpan = document.createElement("span");
       const soulSpan = document.createElement("span");
-      hpSpan.textContent = char.baseHp;
-      soulSpan.textContent = char.baseSouls;
+      hpSpan.textContent = char.baseHp.toLocaleString("pt-BR");
+      soulSpan.textContent = char.baseSouls.toLocaleString("pt-BR");
 
       card.innerHTML = `
         <h3>${char.name}</h3>
@@ -45,6 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
           ${char.drops?.[0] ? `<p>${char.drops[0]}</p>` : ""}
           ${char.drops?.[1] ? `<p>${char.drops[1]}</p>` : ""}
           ${char.drops?.[2] ? `<p>${char.drops[2]}</p>` : ""}
+          ${char.drops?.[3] ? `<p>${char.drops[3]}</p>` : ""}
+          ${char.drops?.[4] ? `<p>${char.drops[4]}</p>` : ""}
         </div>
         <div class="buttons-co">
           <button class="ng-btn">${char.ngPlus.length > 0 ? char.ngPlus[0].level : "NG+"}</button>
@@ -60,8 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (char.ngPlus.length === 0) return;
         ngIndex = (ngIndex + 1) % char.ngPlus.length;
         const stats = char.ngPlus[ngIndex];
-        hpDisplay.textContent = stats.hp;
-        soulsDisplay.textContent = stats.souls;
+        hpDisplay.textContent = stats.hp.toLocaleString("pt-BR");;
+        soulsDisplay.textContent = stats.souls.toLocaleString("pt-BR");;
         ngBtn.textContent = stats.level;
       });
 
@@ -102,6 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     section.appendChild(carouselContainer);
     container.appendChild(section);
+
+    const main = document.getElementById('ds1');
+    main.appendChild(section);
   }
 
   function formatarTitulo(categoria) {

@@ -5,6 +5,7 @@
   font-family: Inter;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -13,7 +14,60 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
+  position: relative;
+  padding-top: 80px;
 }
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+}
+
+#ds1 {
+  display: grid;
+  grid-auto-rows: auto;
+  gap: 10px;
+}
+
+main #preview-sections {
+  display: grid;
+  grid-auto-rows: auto;
+  gap: 10px;
+}
+
+section {
+  display: grid;
+  grid-auto-rows: auto-fit;
+  background-color: #201717;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: inset 5px 5px 0 #392525;
+
+  position: relative;
+}
+
+.see-more-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #444;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s;
+
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+
+.see-more-btn:hover {
+  background: #666;
+}
+
 
 h1 {
   text-align: center;
@@ -21,14 +75,7 @@ h1 {
 
 h3 {
   font-size: 100%;
-  color: rgb(254, 254, 94);
-}
-
-.carousel-container {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 40px;
-  padding: 5px 40px;
+  color: #a46c6c;
 }
 
 .carousel-wrapper {
@@ -43,6 +90,13 @@ h3 {
 
 .carousel-wrapper::-webkit-scrollbar {
   display: none; /* Chrome, Safari e Opera */
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 40px;
+  padding: 5px 40px;
 }
 
 .arrow {
@@ -96,7 +150,7 @@ h3 {
   box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
 
   display: grid;
-  grid-auto-rows: auto-fit;
+  grid-auto-rows: 20px 160px 25px 1fr 30px;
   gap: 6px;
 }
 
@@ -107,6 +161,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 160px;
 }
 
 .image-co img {
@@ -165,12 +220,14 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   background-color: rgb(18, 18, 18);
   padding: 4px;
   border-radius: 2px;
   font-size: 12px;
   font-weight: 300;
   flex-grow: 1;
+  flex-wrap: wrap;
 }
 
 .drops-co p {
@@ -191,17 +248,9 @@ h3 {
   background-color: rgb(107, 196, 107);
 }
 
-.see-more-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: #444;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background 0.3s;
+.tips {
+  cursor: pointer;
 }
-
-.see-more-btn:hover {
-  background: #666;
+.tips:hover {
+  color: rgb(255, 83, 83);
 }
