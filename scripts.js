@@ -1,48 +1,203 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const bosses = [
-    { id: "gwyn", name: "Gwyn, Lord of Cinder", hp: 5000, souls: 70000 },
-    { id: "artorias", name: "Artorias the Abysswalker", hp: 4500, souls: 50000 },
-    { id: "ornstein", name: "Dragon Slayer Ornstein", hp: 3000, souls: 25000 },
-    { id: "smough", name: "Executioner Smough", hp: 3200, souls: 25000 },
-    { id: "manus", name: "Manus, Father of the Abyss", hp: 6000, souls: 68000 },
-    // adicione mais bosses aqui
-  ];
+  const container = document.body;
 
-  const wrapper = document.getElementById("carouselWrapper");
+  const gameData = {
+    bossesPrincipais: [
+      {
+        id: "gwyn",
+        name: "Gwyn, Lord of Cinder",
+        baseHp: 5000,
+        baseSouls: 70000,
+        ngPlus: [
+          { level: "NG+", hp: 6000, souls: 85000 },
+          { level: "NG++", hp: 7200, souls: 100000 },
+        ]
+      },
+      {
+        id: "artorias",
+        name: "Artorias the Abysswalker",
+        baseHp: 4500,
+        baseSouls: 50000,
+        ngPlus: [
+          { level: "NG+", hp: 5400, souls: 65000 },
+          { level: "NG++", hp: 6300, souls: 80000 },
+        ]
+      },
+      {
+        id: "gwyn",
+        name: "Gwyn, Lord of Cinder",
+        baseHp: 5000,
+        baseSouls: 70000,
+        ngPlus: [
+          { level: "NG+", hp: 6000, souls: 85000 },
+          { level: "NG++", hp: 7200, souls: 100000 },
+        ]
+      },
+      {
+        id: "artorias",
+        name: "Artorias the Abysswalker",
+        baseHp: 4500,
+        baseSouls: 50000,
+        ngPlus: [
+          { level: "NG+", hp: 5400, souls: 65000 },
+          { level: "NG++", hp: 6300, souls: 80000 },
+        ]
+      },
+      {
+        id: "gwyn",
+        name: "Gwyn, Lord of Cinder",
+        baseHp: 5000,
+        baseSouls: 70000,
+        ngPlus: [
+          { level: "NG+", hp: 6000, souls: 85000 },
+          { level: "NG++", hp: 7200, souls: 100000 },
+        ]
+      },
+      {
+        id: "artorias",
+        name: "Artorias the Abysswalker",
+        baseHp: 4500,
+        baseSouls: 50000,
+        ngPlus: [
+          { level: "NG+", hp: 5400, souls: 65000 },
+          { level: "NG++", hp: 6300, souls: 80000 },
+        ]
+      }
+    ],
+    bossesOpcionais: [
+      {
+        id: "manus",
+        name: "Manus, Father of the Abyss",
+        baseHp: 6000,
+        baseSouls: 68000,
+        ngPlus: [
+          { level: "NG+", hp: 7000, souls: 80000 },
+          { level: "NG++", hp: 8200, souls: 95000 },
+        ]
+      }
+    ],
+    npcs: [
+      {
+        id: "solaire",
+        name: "Solaire of Astora",
+        baseHp: 1200,
+        baseSouls: 0,
+        ngPlus: []
+      }
+    ],
+    mobs: [
+      {
+        id: "hollow",
+        name: "Hollow Warrior",
+        baseHp: 300,
+        baseSouls: 50,
+        ngPlus: [
+          { level: "NG+", hp: 350, souls: 70 },
+          { level: "NG++", hp: 420, souls: 90 },
+        ]
+      }
+    ]
+  };
 
-  bosses.forEach(boss => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.dataset.hp = boss.hp;
-    card.dataset.souls = boss.souls;
+  for (const categoria in gameData) {
+    const section = document.createElement("section");
+    const title = document.createElement("h2");
+    title.textContent = formatarTitulo(categoria);
+    section.appendChild(title);
 
-    card.innerHTML = `
-      <h2>${boss.name}</h2>
-      <p>HP: <span class="hp">${boss.hp}</span></p>
-      <p>Almas: <span class="souls">${boss.souls}</span></p>
-      <button class="ng-btn">NG+</button>
-      <button onclick="window.open('lore.html?id=${boss.id}', '_blank')">Lore</button>
-    `;
+    const carouselContainer = document.createElement("div");
+    carouselContainer.className = "carousel-container";
 
-    card.querySelector(".ng-btn").addEventListener("click", () => {
-      const hp = card.dataset.hp = Math.floor(card.dataset.hp * 1.5);
-      const souls = card.dataset.souls = Math.floor(card.dataset.souls * 1.4);
-      card.querySelector(".hp").textContent = hp;
-      card.querySelector(".souls").textContent = souls;
+    const prevBtn = document.createElement("button");
+    prevBtn.className = "arrow left";
+    prevBtn.textContent = "←";
+
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "arrow right";
+    nextBtn.textContent = "→";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "carousel-wrapper";
+
+    gameData[categoria].forEach((char) => {
+      let ngIndex = 0;
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const hpSpan = document.createElement("span");
+      const soulSpan = document.createElement("span");
+
+      hpSpan.textContent = char.baseHp;
+      soulSpan.textContent = char.baseSouls;
+
+      card.innerHTML = `
+        <h3>${char.name}</h3>
+        <p>HP: <span class="hp">${hpSpan.textContent}</span></p>
+        <p>Almas: <span class="souls">${soulSpan.textContent}</span></p>
+        <button class="ng-btn">${char.ngPlus.length > 0 ? char.ngPlus[0].level : "NG+"}</button>
+        <button onclick="window.open('lore.html?id=${char.id}', '_blank')">Lore</button>
+      `;
+
+      const ngBtn = card.querySelector(".ng-btn");
+      const hpDisplay = card.querySelector(".hp");
+      const soulsDisplay = card.querySelector(".souls");
+
+      ngBtn.addEventListener("click", () => {
+        if (char.ngPlus.length === 0) return;
+        ngIndex = (ngIndex + 1) % char.ngPlus.length;
+        const stats = char.ngPlus[ngIndex];
+        hpDisplay.textContent = stats.hp;
+        soulsDisplay.textContent = stats.souls;
+        ngBtn.textContent = stats.level;
+      });
+
+      wrapper.appendChild(card);
     });
 
-    wrapper.appendChild(card);
-  });
+    const updateArrows = () => {
+      const scrollLeft = wrapper.scrollLeft;
+      const maxScrollLeft = wrapper.scrollWidth - wrapper.clientWidth;
+      prevBtn.style.visibility = scrollLeft <= 0 ? "hidden" : "visible";
+      nextBtn.style.visibility = scrollLeft >= maxScrollLeft - 1 ? "hidden" : "visible";
+    };
 
-  // Carrossel
-  const wrapperScroll = document.getElementById("carouselWrapper");
-  const scrollAmount = 300;
+    carouselContainer.addEventListener("mouseenter", () => {
+      updateArrows();
+      prevBtn.classList.add("show");
+      nextBtn.classList.add("show");
+    });
 
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    wrapperScroll.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-  });
+    carouselContainer.addEventListener("mouseleave", () => {
+      prevBtn.classList.remove("show");
+      nextBtn.classList.remove("show");
+    });
 
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    wrapperScroll.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  });
+    wrapper.addEventListener("scroll", updateArrows);
+
+    prevBtn.addEventListener("click", () => {
+      wrapper.scrollBy({ left: -300, behavior: "smooth" });
+    });
+
+    nextBtn.addEventListener("click", () => {
+      wrapper.scrollBy({ left: 300, behavior: "smooth" });
+    });
+
+    carouselContainer.appendChild(prevBtn);
+    carouselContainer.appendChild(wrapper);
+    carouselContainer.appendChild(nextBtn);
+
+    section.appendChild(carouselContainer);
+    container.appendChild(section);
+  }
+
+  function formatarTitulo(categoria) {
+    switch (categoria) {
+      case "bossesPrincipais": return "Bosses Principais";
+      case "bossesOpcionais": return "Bosses Opcionais";
+      case "npcs": return "NPCs";
+      case "mobs": return "Inimigos Comuns (Mobs)";
+      default: return categoria;
+    }
+  }
 });
