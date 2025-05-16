@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --section-back: #1e1414;
+  --section-outline: #ffdf6b;
+}
+
 body {
   background-color: #111;
   color: white;
@@ -26,13 +31,13 @@ header {
   height: 70px;
 }
 
-#ds1 {
+main#ds1 {
   display: grid;
   grid-auto-rows: auto;
   gap: 10px;
 }
 
-main #preview-sections {
+main #preview-sections, main#ds1 {
   display: grid;
   grid-auto-rows: auto;
   gap: 10px;
@@ -40,18 +45,18 @@ main #preview-sections {
 
 section {
   display: grid;
-  grid-auto-rows: auto-fit;
-  background-color: #201717;
+  grid-auto-rows: auto;
+  background-color: var(--section-back);
   padding: 15px;
   border-radius: 4px;
-  box-shadow: inset 5px 5px 0 #392525;
+  box-shadow: inset 5px 5px 0 var(--section-outline);
 
   position: relative;
 }
 
 .see-more-btn {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 8px 12px;
   background: #444;
   color: white;
@@ -73,9 +78,13 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  margin: 10px;
+}
+
 h3 {
   font-size: 100%;
-  color: #a46c6c;
+  color: var(--section-outline);
 }
 
 .carousel-wrapper {
@@ -143,6 +152,7 @@ h3 {
   text-align: center;
   background: #222;
   color: white;
+  outline: 2px dotted gray;
   border-radius: 5px;
   max-width: 200px;
   padding: 8px 20px;
